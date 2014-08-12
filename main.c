@@ -14,9 +14,7 @@
 #define APRESENTACAO 0
 #define AULA 1
 #define LAB 2
-typedef struct{
-
-}Hostory;
+int auxUser = 0,auxRec = 0,auxAloc = 0;
 typedef struct{
     int id;
     int level;
@@ -43,17 +41,20 @@ typedef struct{
     int status;
 
 }Aloc;
-int auxUser = 0,auxRec = 0,auxAloc = 0;
+
 User *usuario;
 Rec *recurso;
 Aloc *alocacao;
-
 void start(int size){
     recurso = (Rec*)malloc(size);
     usuario = (User*)malloc(size);
     alocacao = (Aloc*)malloc(size);
 }
-void printList(int idAloc){
+void printRelatorio(){
+    printf("Numero de Usuario %d\n",auxUser);
+    printf("Numero de Alocacoes %d\n",auxAloc);
+    printf("Numero de Recursos %d\n",auxRec);
+
 
 }
 void addList(int idAloc,int idUser){
@@ -63,7 +64,7 @@ void addList(int idAloc,int idUser){
 
 }
 void alocar(int idRec,int idUser, int type, char titulo[],char descricao[],char inicio[],char fim[]){
-    if(recurso[idRec].aloc == 0){
+    if(recurso[idRec].aloc == NOALOC){
         if(recurso[idRec].type == APRESENTACAO && usuario[idUser].level == ALUNO){
             alocacao[auxAloc].item = idRec;
             //printf("#DEBUG * %s *\n",titulo);
@@ -166,8 +167,9 @@ int main(){
     newUser(ADMIN,"Admin");
     newUser(ALUNO,"matheus inacio");
     newRec(LAB,1);
-    alocar(0,1,1,"Titulo","Descricao","10/08/2014","15/08/2014");
-    okAloc(1,0);
-    //alocar(0,5,1,"Titulo","Descricao");
+    alocar(0,0,1,"Titulo","Descricao","10/08/2014","15/08/2014");
+    okAloc(0,0);
+    alocar(0,0,1,"Titulo","Descricao","10/08/2014","15/08/2014");
     printAloc(0);
+    printRelatorio();
 }

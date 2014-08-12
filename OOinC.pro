@@ -16,6 +16,6 @@ TEMPLATE = app
 
 
 SOURCES += \
-    main.cpp
+    main.c
 
 HEADERS +=
